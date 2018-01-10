@@ -12,22 +12,22 @@
 ### Component parameters
 
 *Legend*
-- < Output
-- > Input
+- :point_right: Output
+- :point_left: Input
 
-- > *data* 
-- > *config*
-- > *search*
-- > *id* `Default id is a id td but if is different set [id]='other id name'`
-- > *routeEdit*
-- > *activeAction*
-- > *select*
+- :point_right: *data* 
+- :point_right: *config*
+- :point_right: *search*
+- :point_right: *id* `Default id is a id td but if is different set [id]='other id name'`
+- :point_right: *routeEdit*
+- :point_right: *activeAction*
+- :point_right: *select*
 
-- < *delete* = new EventEmitter<any>();
-- < *edit* = new EventEmitter<any>();
+- :point_left: *delete* = new EventEmitter<any>();
+- :point_left: *edit* = new EventEmitter<any>();
 
-- < *selected* 
-- < *selectedDoubleClick* = new EventEmitter<any>();
+- :point_left: *selected* 
+- :point_left: *selectedDoubleClick* = new EventEmitter<any>();
 ### Example easy
 
 ```typescript
