@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit, Input } from '@angular/core';
-import { Table, Column } from './model/table';
+import { Table, Column, OrderEnum } from './model/table';
 import { Output } from '@angular/core';
 import { PegaValorDaPropriedadeComDotNotation } from './helper';
 
@@ -12,12 +12,11 @@ import { PegaValorDaPropriedadeComDotNotation } from './helper';
 export class TableComponent {
   @Input() data: object[] = [];
   @Input() config: Table;
-  @Input() search: string = '';
+  @Input() search = '';
   @Input() id = 'id';
   @Input() routeEdit = '../editar';
   @Input() activeAction = true;
   @Input() select = false;
-
 
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -27,6 +26,7 @@ export class TableComponent {
 
   private _selected = {};
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges(change) {
     if (change.data) {
       this.data = change.data.currentValue;
@@ -58,7 +58,7 @@ export class TableComponent {
     this.selectedDoubleClick.emit(objeto);
   }
 
-  foiSelecionado(objeto): boolean {
+  isSelected(objeto): boolean {
     return objeto === this._selected;
   }
 
@@ -69,14 +69,14 @@ export class TableComponent {
       : '';
   }
 
-  renderizaString(objeto: object, coluna: Column): string {
+  renderString(objeto: object, coluna: Column): string {
     if (coluna.extend) {
-      return this.configuraColuna(objeto, coluna);
+      return this.configColumn(objeto, coluna);
     }
     return this.transformaObjetoNomeData(objeto, coluna.nameData);
   }
 
-  renderizaClass(coluna: Column) {
+  renderClass(coluna: Column) {
     if (coluna && coluna.style) {
       const { className } = coluna.style;
       // tslint:disable-next-line:curly
@@ -85,7 +85,7 @@ export class TableComponent {
     return '';
   }
 
-  configuraColuna(objeto, coluna: Column): string {
+  configColumn(objeto, coluna: Column): string {
     if (coluna.extend.mathValueToString) {
       return this.mathValueToString(objeto, coluna);
     }
@@ -142,7 +142,40 @@ export class TableComponent {
     return resultMaths;
   }
 
-  isEmpty() {
+  order(column: Column) {
+    if (column.order.current === undefined) {
+      column.order.current = OrderEnum.ascending;
+    }
 
+    column.order.current = this.newOrderCurrent(column);
+
+    this.orderData(column);
+
+  }
+
+  private newOrderCurrent(column: Column) {
+    if (column.order.current === OrderEnum.ascending) {
+      return OrderEnum.decreasing;
+    } else {
+      return OrderEnum.ascending;
+    }
+  }
+
+  private orderData(column: Column) {
+    this.data.sort((a, b) => {
+      const nameDataA = this.transformaObjetoNomeData(a, column.nameData || '');
+      const nameDataB = this.transformaObjetoNomeData(b, column.nameData || '');
+      // tslint:disable-next-line:curly
+      if (nameDataA < nameDataB)
+        return column.order.current === OrderEnum.ascending ? -1 : 1;
+      // tslint:disable-next-line:curly
+      if (nameDataA > nameDataB)
+        return column.order.current === OrderEnum.ascending ? 1 : -1;
+      return 0;
+    });
+  }
+
+  arrowOrderIconActual(currentOrder) {
+    return OrderEnum.ascending === currentOrder ? 'arrow_drop_down' : 'arrow_drop_up'
   }
 }

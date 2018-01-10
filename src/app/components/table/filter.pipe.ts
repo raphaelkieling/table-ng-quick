@@ -4,6 +4,7 @@ import { PegaValorDaPropriedadeComDotNotation, removerAcentos } from './helper';
 @Pipe({ name: 'filter' })
 export class FilterTablePipe implements PipeTransform {
   transform(dados: Array<any>, filtro: string, nameData: string[]): any {
+
     if (filtro.length >= 1) {
       return dados.filter((el) => {
 
@@ -18,5 +19,6 @@ export class FilterTablePipe implements PipeTransform {
     } else {
       return dados;
     }
+
   }
 }

@@ -1,9 +1,8 @@
 #Table NG
 
-. ordernação por coluna
-. multi Select
-. contador de linha
-. search
-. filtro
-. icone
-. alterar tabela abrindo input ou checkbox
+. Search [ done ]
+. Order per column [ done ]
+. Multi Select [ process ]
+. Filter [ done ]
+. Icon 
+. Alter table with input html

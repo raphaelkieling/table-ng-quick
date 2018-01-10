@@ -2,15 +2,19 @@
   <table [class]="config.style?.classNameTable">
     <thead [class]="config.style?.classNameTableHead">
       <tr>
-        <th *ngFor="let th of config?.columns">{{th.title}}</th>
+        <th *ngFor="let th of config?.columns">
+          {{th.title}}
+          <i *ngIf="th.icon?.active" class="material-icons order-arrow">{{th.icon.icon}}</i>
+          <i *ngIf="th.order?.active" (click)="order(th)" class="material-icons order-arrow">{{arrowOrderIconActual(th.order.current)}}</i>
+        </th>
         <th *ngIf='activeAction' style="width:30px;">Ação</th>
       </tr>
     </thead>
 
     <tbody *ngIf="data">
-      <tr *ngFor="let objeto of data  | filter:search:config?.search?.nameData" (dblclick)="emiteObjetoClickDuplo(objeto)" [class.table-primary]="foiSelecionado(objeto)" (click)="addClassSelecionado(objeto)">
+      <tr *ngFor="let objeto of data  | filter:search:config.search?.nameData" (dblclick)="emiteObjetoClickDuplo(objeto)" [class.table-primary]="isSelected(objeto)" (click)="addClassSelecionado(objeto)">
         <td *ngFor="let column of config.columns">
-          <span [class]="renderizaClass(column)" [innerHTML]="renderizaString(objeto,column)"></span>
+          <span [class]="renderClass(column)" [innerHTML]="renderString(objeto,column)"></span>
         </td>
 
         <td *ngIf='activeAction' style="min-width:100px;">

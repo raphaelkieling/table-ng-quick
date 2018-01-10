@@ -9,7 +9,8 @@ import { TableComponent } from './table.component';
     CommonModule,
     RouterModule,
   ],
-  declarations: [TableComponent,
+  declarations: [
+    TableComponent,
     FilterTablePipe
   ],
   exports: [TableComponent]

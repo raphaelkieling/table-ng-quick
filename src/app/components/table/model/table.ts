@@ -2,26 +2,39 @@ export interface Table {
   columns: Column[];
   search?: SearchConfig;
   style?: {
-    classNameContainer: string;
-    classNameTable: string;
-    classNameTableHead:string;
+    classNameContainer?: string;
+    classNameTable?: string;
+    classNameTableHead?: string;
   };
 }
 
 export interface SearchConfig {
-  nameData: string[]
+  nameData: string[];
 }
 
 export interface Column {
   title: string;
   nameData?: string;
-  extend?: Config;
+  extend?: Extend;
+  icon?: {
+    active: boolean;
+    icon: string;
+  };
+  order?: {
+    active: boolean;
+    current?: OrderEnum;
+  };
   style?: {
     className?: string;
   };
 }
 
-export interface Config {
+export enum OrderEnum {
+  decreasing = 0,
+  ascending = 1
+}
+
+export interface Extend {
   mathValueToString?: {
     resultView: string[];
     nameDatas: any[];
@@ -36,6 +49,7 @@ export interface Config {
     idObject: string;
     nameData: string;
   };
+
 }
 
 export interface Pagination {
