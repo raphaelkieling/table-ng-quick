@@ -1,0 +1,23 @@
+<div [class]="config.style?.classNameContainer" *ngIf="config?.columns">
+  <table [class]="config.style?.classNameTable">
+    <thead [class]="config.style?.classNameTableHead">
+      <tr>
+        <th *ngFor="let th of config?.columns">{{th.title}}</th>
+        <th *ngIf='activeAction' style="width:30px;">Ação</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="data">
+      <tr *ngFor="let objeto of data  | filter:search:config?.search?.nameData" (dblclick)="emiteObjetoClickDuplo(objeto)" [class.table-primary]="foiSelecionado(objeto)" (click)="addClassSelecionado(objeto)">
+        <td *ngFor="let column of config.columns">
+          <span [class]="renderizaClass(column)" [innerHTML]="renderizaString(objeto,column)"></span>
+        </td>
+
+        <td *ngIf='activeAction' style="min-width:100px;">
+          <i class="material-icons" (click)="editEvent(objeto)">edit</i>
+          <i class="material-icons" (click)="deleteEvent(objeto[id])">delete</i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
