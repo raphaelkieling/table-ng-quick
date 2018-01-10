@@ -2,7 +2,7 @@
 
 - [x] Search
 - [x] Order per column
-- [] Multi Select
+- [ ] Multi Select
 - [x] Filter
 - [x] Icon
-- [] Alter table with input html
+- [ ] Alter table with input html
