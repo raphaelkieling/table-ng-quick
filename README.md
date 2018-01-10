@@ -16,19 +16,19 @@
 - :point_left: Input
 
 *Parameters*
-- :point_right: *data* 
-- :point_right: *config*
-- :point_right: *search*
+- :point_right: *data* `Array of data to list in table`
+- :point_right: *config* `Config table object is _Table_`
+- :point_right: *search* `Search to word  > tip: bind one variable here`
 - :point_right: *id* `Default id is a id td but if is different set [id]='other id name'`
-- :point_right: *routeEdit*
-- :point_right: *activeAction*
-- :point_right: *select*
+- :point_right: *activeAction* `Active edit and trash icons`
+- :point_right: *select* `Select on click,  return object in selected output`
 
-- :point_left: *delete* = new EventEmitter<any>();
-- :point_left: *edit* = new EventEmitter<any>();
+- :point_left: *delete* `Emit a delete event empty to use function in html`
+- :point_left: *edit*  `Emit a edit event empty to use function in html`
 
-- :point_left: *selected* 
-- :point_left: *selectedDoubleClick* = new EventEmitter<any>();
+- :point_left: *selected* `Emit object selected`
+- :point_left: *selectedDoubleClick* `Emit object double click selected`
+
 ### Example easy
 
 ```typescript

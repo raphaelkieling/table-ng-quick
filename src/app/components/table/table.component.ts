@@ -14,7 +14,6 @@ export class TableComponent {
   @Input() config: Table;
   @Input() search = '';
   @Input() id = 'id';
-  @Input() routeEdit = '../editar';
   @Input() activeAction = true;
   @Input() select = false;
 
