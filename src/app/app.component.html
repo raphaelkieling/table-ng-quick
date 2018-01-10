@@ -2,5 +2,5 @@
   <br>
   <input type="text" class="form-control" [(ngModel)]="search">
   <br>
-  <app-table [data]="dados" [search]="search" (selected)="out($event)" [config]="config" (selectedDoubleClick)="out($event)"></app-table>
+  <table-ng [data]="dados" [search]="search" (selected)="out($event)" [config]="config" (selectedDoubleClick)="out($event)"></table-ng>
 </div>

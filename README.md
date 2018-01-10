@@ -15,6 +15,7 @@
 - :point_right: Output
 - :point_left: Input
 
+*Parameters*
 - :point_right: *data* 
 - :point_right: *config*
 - :point_right: *search*

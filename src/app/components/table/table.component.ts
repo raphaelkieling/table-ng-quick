@@ -5,7 +5,7 @@ import { Output } from '@angular/core';
 import { PegaValorDaPropriedadeComDotNotation } from './helper';
 
 @Component({
-  selector: 'app-table',
+  selector: 'table-ng',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
