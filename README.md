@@ -1,8 +1,8 @@
-#Table NG
+# Table NG
 
-. Search [ done ]
-. Order per column [ done ]
-. Multi Select [ process ]
-. Filter [ done ]
-. Icon 
-. Alter table with input html
+- [x] Search
+- [x] Order per column
+- [] Multi Select
+- [x] Filter
+- [x] Icon
+- [] Alter table with input html
