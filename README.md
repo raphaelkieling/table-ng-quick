@@ -108,5 +108,5 @@ export class AppComponent {
 ### Html example
 
 ```html
-<app-table [data]="data" [config]="config"></app-table>
+<table-ng [data]="data" [config]="config"></table-ng>
 ```
