@@ -1,11 +1,13 @@
 export interface Table {
   columns: Column[];
   search?: SearchConfig;
-  style?: {
-    classNameContainer?: string;
-    classNameTable?: string;
-    classNameTableHead?: string;
-  };
+  style?: StyleTable;
+}
+
+export interface StyleTable {
+  classNameContainer?: string;
+  classNameTable?: string;
+  classNameTableHead?: string;
 }
 
 export interface SearchConfig {

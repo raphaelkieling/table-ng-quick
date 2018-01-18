@@ -7,6 +7,7 @@
 - [x] Filter
 - [x] Icon
 - [ ] Alter table with input html
+- [x] Config Service to GLOBAL config (basic search and style)
 
 
 ### Component parameters

@@ -1,13 +1,15 @@
+import { TableConfigService } from './components/table/service/table-config.service';
 import { Table } from './components/table/model/table';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [TableConfigService]
 })
 export class AppComponent {
-  search = 'app';
+  search = '';
 
   dados = [
     { id: '1', nome: 'raphael' },
@@ -16,17 +18,18 @@ export class AppComponent {
   ];
   config: Table;
 
-  constructor() {
+  constructor(private tbc: TableConfigService) {
+    this.tbc.style = {
+      classNameContainer: 'table-responsive',
+      classNameTable: 'table table-hover'
+    };
+
     this.config = {
-      style: {
-        classNameContainer: 'table-responsive',
-        classNameTable: 'table table-hover'
-      },
       search: {
         nameData: ['trabalho.nome']
       },
       columns: [
-        { title: 'Nome', nameData: 'nome', order: { active: true }, icon: { active: true , icon: 'archive'} },
+        { title: 'Nome', nameData: 'nome', order: { active: true }, icon: { active: true, icon: 'archive' } },
         { title: 'Job', nameData: 'trabalho.nome', order: { active: true } },
         {
           title: 'Admin', extend: {

@@ -1,6 +1,6 @@
 {
   "name": "table-ng-quick",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json"
+    "packagr": "ng-packagr -p ng-package.json",
+    "precommit": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "^5.0.0",
@@ -33,6 +34,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
+    "husky": "^0.14.3",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",

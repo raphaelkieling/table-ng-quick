@@ -3,8 +3,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Table, Column, OrderEnum } from './model/table';
 import { Output } from '@angular/core';
 import { PegaValorDaPropriedadeComDotNotation } from './helper';
+import { TableConfigService } from './service/table-config.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'table-ng',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
@@ -25,6 +27,13 @@ export class TableComponent {
 
   private _selected = {};
 
+  constructor(private tableConfigS: TableConfigService) { }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit() {
+    this.config.search = this.config.search ? this.config.search : this.tableConfigS.search;
+    this.config.style = this.config.style ? this.config.style : this.tableConfigS.style;
+  }
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges(change) {
     if (change.data) {
@@ -175,6 +184,6 @@ export class TableComponent {
   }
 
   arrowOrderIconActual(currentOrder) {
-    return OrderEnum.ascending === currentOrder ? 'arrow_drop_down' : 'arrow_drop_up'
+    return OrderEnum.ascending === currentOrder ? 'arrow_drop_down' : 'arrow_drop_up';
   }
 }

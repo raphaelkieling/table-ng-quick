@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from './table.component';
+import { TableConfigService } from './service/table-config.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { TableComponent } from './table.component';
     TableComponent,
     FilterTablePipe
   ],
-  exports: [TableComponent]
+  exports: [TableComponent],
+  providers: [TableConfigService]
 })
 export class TableModule { }

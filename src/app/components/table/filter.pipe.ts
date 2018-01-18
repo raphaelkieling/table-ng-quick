@@ -14,7 +14,7 @@ export class FilterTablePipe implements PipeTransform {
         });
 
         const palavraFinalConcatenada: string = palavraDoObjeto.join('');
-        return (palavraFinalConcatenada.toLocaleLowerCase().includes(removerAcentos(filtro.toLocaleLowerCase())))
+        return (palavraFinalConcatenada.toLocaleLowerCase().includes(removerAcentos(filtro.toLocaleLowerCase())));
       });
     } else {
       return dados;
