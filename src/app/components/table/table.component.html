@@ -11,16 +11,22 @@
       </tr>
     </thead>
 
-    <tbody *ngIf="data">
-      <tr *ngFor="let objeto of data  | filter:search:config.search?.nameData" (dblclick)="emiteObjetoClickDuplo(objeto)" [class.table-primary]="isSelected(objeto)" (click)="addClassSelecionado(objeto)">
-        <td *ngFor="let column of config.columns">
-          <span [class]="renderClass(column)" [innerHTML]="renderString(objeto,column)"></span>
+    <tbody *ngFor="let objeto of data | filter:search:config.search?.nameData, let i=index ">
+      <tr
+      *ngIf="_nRows ? i < _nRows: data.length"
+      (dblclick)="emiteObjetoClickDuplo(objeto)"
+      [class.table-primary]="isSelected(objeto) "
+      (click)="addClassSelecionado(objeto) ">
+
+        <td *ngFor="let column of config.columns ">
+          <span [class]="renderClass(column) " [innerHTML]="renderString(objeto,column) "></span>
         </td>
 
-        <td *ngIf='activeAction' style="min-width:100px;">
-          <i class="material-icons" (click)="editEvent(objeto)">edit</i>
-          <i class="material-icons" (click)="deleteEvent(objeto[id])">delete</i>
+        <td *ngIf='activeAction' style="min-width:100px; ">
+          <i class="material-icons " (click)="editEvent(objeto) ">edit</i>
+          <i class="material-icons " (click)="deleteEvent(objeto[id]) ">delete</i>
         </td>
+
       </tr>
     </tbody>
   </table>

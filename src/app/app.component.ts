@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   search = '';
+  rows = 1;
 
   dados = [
     { id: '1', nome: 'raphael' },
@@ -26,7 +27,7 @@ export class AppComponent {
 
     this.config = {
       search: {
-        nameData: ['trabalho.nome']
+        nameData: ['trabalho.nome', 'nome']
       },
       columns: [
         { title: 'Nome', nameData: 'nome', order: { active: true }, icon: { active: true, icon: 'archive' } },

@@ -18,6 +18,9 @@ export class TableComponent {
   @Input() id = 'id';
   @Input() activeAction = true;
   @Input() select = false;
+  @Input() set displayNRows(value) {
+    this._nRows = value;
+  }
 
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -25,6 +28,7 @@ export class TableComponent {
   @Output() selected = new EventEmitter<any>();
   @Output() selectedDoubleClick = new EventEmitter<any>();
 
+  public _nRows = null;
   private _selected = {};
 
   constructor(private tableConfigS: TableConfigService) { }

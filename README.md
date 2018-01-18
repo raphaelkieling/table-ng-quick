@@ -13,8 +13,8 @@
 ### Component parameters
 
 *Legend*
-- :point_right: Output
-- :point_left: Input
+- :point_left: Output
+- :point_right: Input
 
 *Parameters*
 - :point_right: *data* `Array of data to list in table`
@@ -23,6 +23,7 @@
 - :point_right: *id* `Default id is a id td but if is different set [id]='other id name'`
 - :point_right: *activeAction* `Active edit and trash icons`
 - :point_right: *select* `Select on click,  return object in selected output`
+- :point_right: *displayNRows* `Binding a number to select limit number rows`
 
 - :point_left: *delete* `Emit a delete event empty to use function in html`
 - :point_left: *edit*  `Emit a edit event empty to use function in html`
