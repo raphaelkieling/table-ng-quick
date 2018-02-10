@@ -38,7 +38,7 @@ export class TableComponent {
     this.config.search = this.config.search ? this.config.search : this.tableConfigS.search;
     this.config.style = this.config.style ? this.config.style : this.tableConfigS.style;
 
-    if (!this.config.action) {
+    if (this.config && !this.config.action) {
       this.config.action = {
         edit: true,
         trash: true
