@@ -37,13 +37,6 @@ export class TableComponent {
   ngOnInit() {
     this.config.search = this.config.search ? this.config.search : this.tableConfigS.search;
     this.config.style = this.config.style ? this.config.style : this.tableConfigS.style;
-
-    if (this.config && !this.config.action) {
-      this.config.action = {
-        edit: true,
-        trash: true
-      };
-    }
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges(change) {

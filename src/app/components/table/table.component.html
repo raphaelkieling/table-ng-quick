@@ -23,8 +23,8 @@
         </td>
 
         <td *ngIf='activeAction' style="min-width:100px; ">
-          <i *ngIf='config?.action?.edit' class="material-icons " (click)="editEvent(objeto) ">edit</i>
-          <i *ngIf='config?.action?.trash' class="material-icons " (click)="deleteEvent(objeto[id]) ">delete</i>
+          <i *ngIf='!config.action || config.action.edit' class="material-icons " (click)="editEvent(objeto) ">edit</i>
+          <i *ngIf='!config.action || config.action.trash' class="material-icons " (click)="deleteEvent(objeto[id]) ">delete</i>
         </td>
 
       </tr>

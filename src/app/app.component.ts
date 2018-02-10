@@ -26,6 +26,10 @@ export class AppComponent {
     };
 
     this.config = {
+      action: {
+        trash: false,
+        edit: true
+      },
       search: {
         nameData: ['trabalho.nome', 'nome']
       },
