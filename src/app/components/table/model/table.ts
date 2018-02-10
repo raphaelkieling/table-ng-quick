@@ -2,6 +2,12 @@ export interface Table {
   columns: Column[];
   search?: SearchConfig;
   style?: StyleTable;
+  action?: Action;
+}
+
+export interface Action {
+  edit: boolean;
+  trash: boolean;
 }
 
 export interface StyleTable {

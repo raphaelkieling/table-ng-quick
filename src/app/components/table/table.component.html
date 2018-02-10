@@ -1,3 +1,5 @@
+{{config | json}}
+
 <div [class]="config.style?.classNameContainer" *ngIf="config?.columns">
   <table [class]="config.style?.classNameTable">
     <thead [class]="config.style?.classNameTableHead">
@@ -23,8 +25,8 @@
         </td>
 
         <td *ngIf='activeAction' style="min-width:100px; ">
-          <i class="material-icons " (click)="editEvent(objeto) ">edit</i>
-          <i class="material-icons " (click)="deleteEvent(objeto[id]) ">delete</i>
+          <i *ngIf='config?.action?.edit' class="material-icons " (click)="editEvent(objeto) ">edit</i>
+          <i *ngIf='config?.action?.trash' class="material-icons " (click)="deleteEvent(objeto[id]) ">delete</i>
         </td>
 
       </tr>
