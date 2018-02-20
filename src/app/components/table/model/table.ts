@@ -1,3 +1,5 @@
+import { ElementTableEvent, ElementTable } from "./element";
+
 export interface Table {
   columns: Column[];
   search?: SearchConfig;
@@ -20,17 +22,7 @@ export interface SearchConfig {
   nameData: string[];
 }
 
-export enum Element {
-  Input = 'Input',
-  Button = 'Button'
-}
 
-export enum ElementEvent {
-  OnClick = 'onclick',
-  OnChange = 'onchange',
-  OnKeyUp = 'onkeyup',
-  Blur = 'onblur'
-}
 
 export interface Column {
   title: string;
@@ -55,7 +47,7 @@ export enum OrderEnum {
 }
 
 export interface CustomEvent {
-  type: Element;
+  type: ElementTable;
   object?: any;
   value?: any;
 }
@@ -70,11 +62,14 @@ export interface Extend {
   };
 
   element?: {
-    el: Element;
+    el: ElementTable;
     className?: string;
     text?: string;
     placeholder?: string;
-    event: ElementEvent;
+    event: ElementTableEvent;
+    hideIf?: Function;
+    disabledIf?: Function;
+    onCreate?: Function;
   };
 
   idToView?: {

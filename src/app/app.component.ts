@@ -1,6 +1,7 @@
 import { TableConfigService } from './components/table/service/table-config.service';
-import { Table, Element, ElementEvent } from './components/table/model/table';
+import { Table, } from './components/table/model/table';
 import { Component } from '@angular/core';
+import { ElementTableEvent, ElementTable } from './components/table/model/element';
 
 @Component({
   selector: 'app-root',
@@ -51,10 +52,10 @@ export class AppComponent {
           title: 'Ação',
           extend: {
             element: {
-              el: Element.Button,
+              el: ElementTable.Button,
               text: 'Hello',
               className: 'bt btn-primary form-control',
-              event: ElementEvent.OnClick
+              event: ElementTableEvent.OnClick
             }
           }
         },
@@ -62,11 +63,21 @@ export class AppComponent {
           title: 'Input',
           extend: {
             element: {
-              el: Element.Input,
+              el: ElementTable.Input,
               placeholder: 'HEHHE',
               text: 'Hello',
               className: 'form-control',
-              event: ElementEvent.Blur
+              event: ElementTableEvent.Blur,
+              onCreate: (objeto, el) => {
+                if (objeto.nome == 'raphael') {
+                  el.placeholder = 'PUTA QE PAR'
+                }
+
+                return el;
+              },
+              disabledIf: (objeto) => {
+                return objeto.nome == 'damiao';
+              }
             }
           }
         }

@@ -1,9 +1,10 @@
 import { EventEmitter, ElementRef } from '@angular/core';
 import { Component, OnInit, Input } from '@angular/core';
-import { Table, Column, OrderEnum, Extend, Element, CustomEvent } from './model/table';
+import { Table, Column, OrderEnum, Extend, CustomEvent } from './model/table';
 import { Output } from '@angular/core';
 import { PegaValorDaPropriedadeComDotNotation } from './helper';
 import { TableConfigService } from './service/table-config.service';
+import { ElementTable } from './model/element';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -112,10 +113,11 @@ export class TableComponent {
   }
 
   element(coluna: Extend, objeto, content: HTMLElement) {
-    const { el, className, text, placeholder, event } = coluna.element;
+    const { el, className, text, placeholder, event, hideIf, disabledIf, onCreate } = coluna.element;
+
     let elemento: any;
 
-    if (el === Element.Input) {
+    if (el === ElementTable.Input) {
       elemento = document.createElement('input');
       elemento.className = coluna.element.className;
       elemento.placeholder = placeholder;
@@ -127,7 +129,7 @@ export class TableComponent {
 
     }
 
-    if (el === Element.Button) {
+    if (el === ElementTable.Button) {
       elemento = document.createElement('button');
       elemento.className = coluna.element.className;
       elemento.textContent = text;
@@ -137,12 +139,33 @@ export class TableComponent {
       });
     }
 
+    if (onCreate) {
+      elemento = onCreate(objeto, elemento);
+    }
+
+
+    if (hideIf) {
+      elemento.style.display = this.hide(hideIf(objeto));
+    }
+
+    if (disabledIf) {
+      elemento.disabled = disabledIf(objeto);
+    }
+
     // Prevent change input or rerendering
     if (content.childNodes.length > 0) {
       return;
     }
 
     content.appendChild(elemento);
+  }
+
+  private hide(condition) {
+    if (condition) {
+      return 'none';
+    } else {
+      return 'block';
+    }
   }
 
   private idToView(coluna: Column, objeto: any) {

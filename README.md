@@ -8,6 +8,8 @@
 - [x] Icon
 - [ ] Alter table with input html
 - [x] Config Service to GLOBAL config (basic search and style)
+- [x] Create a element Input and Button in html with events
+- [x] Create function to disable and hide input / buttons
 
 
 ### Component parameters
