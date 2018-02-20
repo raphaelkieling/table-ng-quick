@@ -1,5 +1,5 @@
 import { TableConfigService } from './components/table/service/table-config.service';
-import { Table } from './components/table/model/table';
+import { Table, Element, ElementEvent } from './components/table/model/table';
 import { Component } from '@angular/core';
 
 @Component({
@@ -14,8 +14,8 @@ export class AppComponent {
 
   dados = [
     { id: '1', nome: 'raphael' },
-    { id: '1', nome: 'damiao', administrator: 'dondomino', trabalho: { nome: 'Desenveolvedor' } },
-    { id: '1', nome: 'julia', administrator: true }
+    { id: '2', nome: 'damiao', administrator: 'dondomino', trabalho: { nome: 'Desenveolvedor' } },
+    { id: '3', nome: 'julia', administrator: true }
   ];
   config: Table;
 
@@ -46,6 +46,29 @@ export class AppComponent {
             }
           },
           order: { active: true }
+        },
+        {
+          title: 'Ação',
+          extend: {
+            element: {
+              el: Element.Button,
+              text: 'Hello',
+              className: 'bt btn-primary form-control',
+              event: ElementEvent.OnClick
+            }
+          }
+        },
+        {
+          title: 'Input',
+          extend: {
+            element: {
+              el: Element.Input,
+              placeholder: 'HEHHE',
+              text: 'Hello',
+              className: 'form-control',
+              event: ElementEvent.Blur
+            }
+          }
         }
       ]
     };
@@ -57,4 +80,5 @@ export class AppComponent {
   out(e) {
     console.log(e);
   }
+
 }

@@ -19,7 +19,7 @@
       (click)="addClassSelecionado(objeto) ">
 
         <td *ngFor="let column of config.columns ">
-          <span [class]="renderClass(column) " [innerHTML]="renderString(objeto,column) "></span>
+          <span [class]="renderClass(column)"  #content [innerHTML]="render(objeto,column,content)"></span>
         </td>
 
         <td *ngIf='activeAction' style="min-width:100px; ">

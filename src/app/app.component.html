@@ -4,5 +4,5 @@
   <br>
   <input type="number" class="form-control" [(ngModel)]="rows">
 
-  <table-ng [data]="dados" [displayNRows]="rows" [search]="search" (selected)="out($event)" [config]="config" (selectedDoubleClick)="out($event)"></table-ng>
+  <table-ng [data]="dados" (customEvent)="out($event)" [displayNRows]="rows" [search]="search" (edit)="out($event)" (selected)="out($event)" [config]="config" (selectedDoubleClick)="out($event)"></table-ng>
 </div>

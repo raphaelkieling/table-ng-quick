@@ -1,6 +1,6 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, ElementRef } from '@angular/core';
 import { Component, OnInit, Input } from '@angular/core';
-import { Table, Column, OrderEnum } from './model/table';
+import { Table, Column, OrderEnum, Extend, Element, CustomEvent } from './model/table';
 import { Output } from '@angular/core';
 import { PegaValorDaPropriedadeComDotNotation } from './helper';
 import { TableConfigService } from './service/table-config.service';
@@ -24,7 +24,7 @@ export class TableComponent {
 
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
-
+  @Output() customEvent = new EventEmitter<CustomEvent>();
   @Output() selected = new EventEmitter<any>();
   @Output() selectedDoubleClick = new EventEmitter<any>();
 
@@ -81,9 +81,9 @@ export class TableComponent {
       : '';
   }
 
-  renderString(objeto: object, coluna: Column): string {
+  render(objeto: object, coluna: Column, content: HTMLElement): string {
     if (coluna.extend) {
-      return this.configColumn(objeto, coluna);
+      return this.configColumn(objeto, coluna, content);
     }
     return this.transformaObjetoNomeData(objeto, coluna.nameData);
   }
@@ -97,7 +97,7 @@ export class TableComponent {
     return '';
   }
 
-  configColumn(objeto, coluna: Column): string {
+  configColumn(objeto, coluna: Column, content: HTMLElement): any {
     if (coluna.extend.mathValueToString) {
       return this.mathValueToString(objeto, coluna);
     }
@@ -105,6 +105,44 @@ export class TableComponent {
     if (coluna.extend.idToView) {
       return this.idToView(coluna, objeto);
     }
+
+    if (coluna.extend.element) {
+      this.element(coluna.extend, objeto, content);
+    }
+  }
+
+  element(coluna: Extend, objeto, content: HTMLElement) {
+    const { el, className, text, placeholder, event } = coluna.element;
+    let elemento: any;
+
+    if (el === Element.Input) {
+      elemento = document.createElement('input');
+      elemento.className = coluna.element.className;
+      elemento.placeholder = placeholder;
+      elemento[event] = (e) => this.customEvent.emit({
+        type: el,
+        object: objeto,
+        value: e.target.value
+      });
+
+    }
+
+    if (el === Element.Button) {
+      elemento = document.createElement('button');
+      elemento.className = coluna.element.className;
+      elemento.textContent = text;
+      elemento[event] = () => this.customEvent.emit({
+        type: el,
+        object: objeto
+      });
+    }
+
+    // Prevent change input or rerendering
+    if (content.childNodes.length > 0) {
+      return;
+    }
+
+    content.appendChild(elemento);
   }
 
   private idToView(coluna: Column, objeto: any) {

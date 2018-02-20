@@ -20,6 +20,18 @@ export interface SearchConfig {
   nameData: string[];
 }
 
+export enum Element {
+  Input = 'Input',
+  Button = 'Button'
+}
+
+export enum ElementEvent {
+  OnClick = 'onclick',
+  OnChange = 'onchange',
+  OnKeyUp = 'onkeyup',
+  Blur = 'onblur'
+}
+
 export interface Column {
   title: string;
   nameData?: string;
@@ -42,6 +54,12 @@ export enum OrderEnum {
   ascending = 1
 }
 
+export interface CustomEvent {
+  type: Element;
+  object?: any;
+  value?: any;
+}
+
 export interface Extend {
   mathValueToString?: {
     resultView: string[];
@@ -49,6 +67,14 @@ export interface Extend {
     expected: any[];
     default: string;
     join?: boolean;
+  };
+
+  element?: {
+    el: Element;
+    className?: string;
+    text?: string;
+    placeholder?: string;
+    event: ElementEvent;
   };
 
   idToView?: {
