@@ -50,6 +50,7 @@ export interface CustomEvent {
   type: ElementTable;
   object?: any;
   value?: any;
+  eventId: string;
 }
 
 export interface Extend {
@@ -70,6 +71,7 @@ export interface Extend {
     hideIf?: Function;
     disabledIf?: Function;
     onCreate?: Function;
+    eventId: string;
   };
 
   idToView?: {

@@ -113,7 +113,7 @@ export class TableComponent {
   }
 
   element(coluna: Extend, objeto, content: HTMLElement) {
-    const { el, className, text, placeholder, event, hideIf, disabledIf, onCreate } = coluna.element;
+    const { el, className, text, placeholder, event, hideIf, disabledIf, onCreate, eventId } = coluna.element;
 
     let elemento: any;
 
@@ -124,7 +124,8 @@ export class TableComponent {
       elemento[event] = (e) => this.customEvent.emit({
         type: el,
         object: objeto,
-        value: e.target.value
+        value: e.target.value,
+        eventId
       });
 
     }
@@ -135,7 +136,8 @@ export class TableComponent {
       elemento.textContent = text;
       elemento[event] = () => this.customEvent.emit({
         type: el,
-        object: objeto
+        object: objeto,
+        eventId
       });
     }
 
